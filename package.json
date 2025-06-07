@@ -1,0 +1,38 @@
+{
+  "name": "hospital-management-system",
+  "version": "1.0.0",
+  "description": "A hospital management system with role-based access built with Next.js and SQL.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "hospital",
+    "management",
+    "system",
+    "nextjs",
+    "sql"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^3.15.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "next": "latest",
+    "prisma": "^3.15.2",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "22.15.30",
+    "@types/react": "19.1.6",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^12.0.7",
+    "typescript": "^4.4.4"
+  }
+}
