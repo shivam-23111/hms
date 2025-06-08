@@ -32,6 +32,11 @@ const Dashboard = () => {
     setLoading(false);
   }, [router]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    router.push('/login');
+  };
+
   if (loading) return <div>Loading...</div>;
   if (!userData) return null;
 
@@ -79,6 +84,23 @@ const Dashboard = () => {
           <span style={{ fontSize: 14 }}>Logged in as</span>
           <div style={{ fontWeight: 600 }}>{userData.name}</div>
           <div style={{ fontSize: 13, opacity: 0.8 }}>{userData.role}</div>
+          <button
+            onClick={handleLogout}
+            style={{
+              marginTop: 16,
+              background: '#fff',
+              color: '#1976d2',
+              border: 'none',
+              borderRadius: 6,
+              padding: '8px 16px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              width: '100%',
+              transition: 'background 0.2s, color 0.2s',
+            }}
+          >
+            Logout
+          </button>
         </div>
       </aside>
 
