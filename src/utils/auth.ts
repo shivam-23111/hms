@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export const login = async (email: string, password: string) => {
     const response = await fetch('/api/login', {
@@ -30,18 +31,33 @@ export const getToken = () => {
     return localStorage.getItem('token');
 };
 
+
+interface User {
+  role: string;
+  [key: string]: any; // Allow additional user properties
+}
+
+export const useAuth = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const userData = getUserData();
+    setUser(userData);
+  }, []);
+
+  return { user };
+};
 // utils/auth.js
 
 // This function gets user data from localStorage (for frontend apps)
 export function getUserData() {
-  const userData = localStorage.getItem('user');
+  if (typeof window === 'undefined') return null; // 🚫 SSR-safe check
 
-  if (!userData) {
-    return null; // No user logged in
-  }
+  const userData = localStorage.getItem('user');
+  if (!userData) return null;
 
   try {
-    return JSON.parse(userData); // Convert string back to object
+    return JSON.parse(userData);
   } catch (error) {
     console.error('Failed to parse user data:', error);
     return null;

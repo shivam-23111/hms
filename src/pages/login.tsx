@@ -1,6 +1,13 @@
-// pages/login.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { getUserData } from '../utils/auth';
+
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -9,6 +16,15 @@ const Login = () => {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+
+  // ✅ If already logged in, redirect based on role
+  useEffect(() => {
+    const data = getUserData();
+    if (data) {
+      const role = data.role.toLowerCase(); // admin / doctor / patient
+      router.push(`/${role}/dashboard`);
+    }
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,10 +50,11 @@ const Login = () => {
       // ✅ Save user data to localStorage
       if (data.user) {
         localStorage.setItem('user', JSON.stringify(data.user));
-      }
 
-      // ✅ Redirect to dashboard
-      router.push('/dashboard');
+        // ✅ Redirect to dashboard based on role
+        const role = data.user.role.toLowerCase(); // admin / doctor / patient
+        router.push(`/${role}/dashboard`);
+      }
     } catch (err) {
       console.error(err);
       setError('Something went wrong. Please try again.');
@@ -67,7 +84,11 @@ const Login = () => {
       </form>
       <p style={{ marginTop: 16 }}>
         {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
-        <button type="button" onClick={() => setIsRegister(!isRegister)} style={{ color: '#1976d2', background: 'none', border: 'none', cursor: 'pointer' }}>
+        <button
+          type="button"
+          onClick={() => setIsRegister(!isRegister)}
+          style={{ color: '#1976d2', background: 'none', border: 'none', cursor: 'pointer' }}
+        >
           {isRegister ? 'Login' : 'Register'}
         </button>
       </p>

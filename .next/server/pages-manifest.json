@@ -1,9 +1,16 @@
 {
   "/_app": "pages/_app.js",
+  "/api/auth/chat": "pages/api/auth/chat.js",
+  "/api/auth/login": "pages/api/auth/login.js",
   "/_error": "pages/_error.js",
+  "/api/auth/register": "pages/api/auth/register.js",
+  "/api/doctors": "pages/api/doctors.js",
+  "/": "pages/index.html",
+  "/api/patient/schedule": "pages/api/patient/schedule.js",
+  "/dashboard": "pages/dashboard.html",
+  "/login": "pages/login.html",
+  "/patient/dashboard": "pages/patient/dashboard.html",
+  "/patient/schedule": "pages/patient/schedule.html",
   "/_document": "pages/_document.js",
-  "/dashboard": "pages/dashboard.js",
-  "/": "pages/index.js",
-  "/login": "pages/login.js",
-  "/api/auth/login": "pages/api/auth/login.js"
+  "/404": "pages/404.html"
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import ChatBot from '../components/ChatBot';
 
 const HomePage: React.FC = () => {
     return (
@@ -26,6 +27,7 @@ const HomePage: React.FC = () => {
                     </li>
                 </ul>
             </nav>
+             <ChatBot />
 
             {/* Main Content */}
             <main style={{ flex: 1, padding: '2rem' }}>
@@ -37,6 +39,7 @@ const HomePage: React.FC = () => {
                     <li>Oversee staff and departments</li>
                     <li>Role-based secure access</li>
                 </ul>
+                 
             </main>
 
             {/* Footer */}
@@ -46,5 +49,4 @@ const HomePage: React.FC = () => {
         </div>
     );
 };
-
 export default HomePage;

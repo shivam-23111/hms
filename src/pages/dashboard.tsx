@@ -33,8 +33,10 @@ const Dashboard = () => {
   }, [router]);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    router.push('/login');
+     if (typeof window !== 'undefined') {
+      localStorage.removeItem('user');
+      router.push('/login');
+    }
   };
 
   if (loading) return <div>Loading...</div>;
